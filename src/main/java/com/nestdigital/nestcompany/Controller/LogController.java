@@ -17,6 +17,7 @@ public class LogController {
     @Autowired
     private LogDao dao;
 
+@CrossOrigin(origins = "*")
     @PostMapping("/checkIn")
     public String addLogDetails(@RequestBody LogModel model){
         DateTimeFormatter date=DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -52,6 +53,11 @@ public class LogController {
         return (List<Map<String, String>>) dao.viewLogByEmpId(logModel.getEmpcode());
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/viewCheckIn")
+    public List<LogModel> viewCheckIn(){
+        return (List<LogModel>) dao.viewCheckIn();
+    }
 
 }
 
